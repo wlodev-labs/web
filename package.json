@@ -1,0 +1,14 @@
+{
+    "name": "wlodev-web-root",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"pnpm --filter web dev\" \"pnpm --filter playground dev\"",
+        "build": "pnpm -r build",
+        "changeset": "changeset"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.31.0",
+        "concurrently": "^9.2.1",
+        "typescript": "^5.9.3"
+    }
+}
