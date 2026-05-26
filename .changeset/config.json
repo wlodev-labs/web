@@ -2,7 +2,7 @@
     "$schema": "https://unpkg.com/@changesets/config@3.1.4/schema.json",
     "changelog": [
         "@changesets/changelog-github",
-        { "repo": "wlodev-labs/web" }
+        { "repo": "wlodev-labs/web", "disableThanks": true }
     ],
     "commit": false,
     "fixed": [],
