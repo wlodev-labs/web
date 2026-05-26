@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.2.0
+
+### Minor Changes
+
+- [`5bf09f0`](https://github.com/wlodev-labs/web/commit/5bf09f032405a3ea468e000d5ee58148832e6ab7) - getTanstackQueryDefaultOptions function
+
 ## 0.1.0
 
 ### Minor Changes
