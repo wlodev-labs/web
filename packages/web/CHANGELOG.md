@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.3.1
+
+### Patch Changes
+
+- [`4bb3332`](https://github.com/wlodev-labs/web/commit/4bb3332899722adec92407dfe89cb35039e57327) - use @tanstack/react-router as peerDependency
+
 ## 0.3.0
 
 ### Minor Changes
