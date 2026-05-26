@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.3.0
+
+### Minor Changes
+
+- [`b67be98`](https://github.com/wlodev-labs/web/commit/b67be98aa32c556265002ba54c89bbcfc9775a8c) - Theme context
+
 ## 0.2.0
 
 ### Minor Changes
