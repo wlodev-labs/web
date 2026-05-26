@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.1.0
+
+### Minor Changes
+
+- [`ecfa0b5`](https://github.com/wlodev-labs/web/commit/ecfa0b5f0749c4ed4448e52c7bcac2008f3c2681) - Version context implemented with flexible useQuery argument and extractData
+
 ## 0.0.8
 
 ### Patch Changes
