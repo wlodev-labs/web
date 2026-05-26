@@ -9,8 +9,7 @@
         "dev": "vite dev --port 3030",
         "build": "vite build",
         "preview": "vite preview",
-        "test": "vitest run",
-        "format": "prettier --write ."
+        "test": "vitest run"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.1.18",
@@ -35,7 +34,6 @@
         "@types/react-dom": "^19.2.0",
         "@vitejs/plugin-react": "^6.0.1",
         "jsdom": "^28.1.0",
-        "prettier": "^3.8.3",
         "typescript": "^5.9.3",
         "vite": "^8.0.0",
         "vitest": "^4.1.5"

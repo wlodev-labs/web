@@ -7,7 +7,8 @@
     "homepage": "https://wlodev.com",
     "repository": {
         "type": "git",
-        "url": "https://github.com/wlodev-labs/web"
+        "url": "git+https://github.com/wlodev-labs/web.git",
+        "directory": "packages/web"
     },
     "bugs": "https://github.com/wlodev-labs/issues",
     "author": {
@@ -54,13 +55,6 @@
         "zod": "^4.4.3"
     },
     "publishConfig": {
-        "exports": {
-            ".": {
-                "import": "./dist/index.js",
-                "types": "./dist/index.d.ts",
-                "default": "./dist/index.js"
-            }
-        },
         "registry": "https://registry.npmjs.org/"
     }
 }
