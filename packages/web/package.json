@@ -57,5 +57,9 @@
         "sonner": "^2.0.7",
         "tsup": "^8.5.1",
         "zod": "^4.4.3"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
     }
 }
