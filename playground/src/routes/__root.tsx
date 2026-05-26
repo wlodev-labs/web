@@ -1,7 +1,11 @@
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { VersionProvider, type VersionQueryOptions } from '@wlodev/web'
+import {
+    ThemeProvider,
+    VersionProvider,
+    type VersionQueryOptions,
+} from '@wlodev/web'
 import { QueryClient, useQuery } from '@tanstack/react-query'
 
 import '../styles.css'
@@ -41,20 +45,22 @@ function RootComponent() {
     const activeBuildId = 'initial'
     return (
         <>
-            <VersionProvider
-                activeBuildId={activeBuildId}
-                useVersionQuery={versionQueryOptions =>
-                    useVersionGet(versionQueryOptions)
-                }
-                extractData={({ data }) => {
-                    return {
-                        buildId: data.buildId,
-                        buildDate: data.buildDate,
+            <ThemeProvider>
+                <VersionProvider
+                    activeBuildId={activeBuildId}
+                    useVersionQuery={versionQueryOptions =>
+                        useVersionGet(versionQueryOptions)
                     }
-                }}
-            >
-                <Outlet />
-            </VersionProvider>
+                    extractData={({ data }) => {
+                        return {
+                            buildId: data.buildId,
+                            buildDate: data.buildDate,
+                        }
+                    }}
+                >
+                    <Outlet />
+                </VersionProvider>
+            </ThemeProvider>
             <TanStackDevtools
                 config={{
                     position: 'bottom-right',
