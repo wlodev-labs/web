@@ -4,8 +4,9 @@ export default defineConfig({
     entry: ['src/index.ts'],
     format: ['esm'],
     dts: true,
-    splitting: true,
     sourcemap: true,
-    treeshake: true,
     clean: true,
+    treeshake: true,
+    minify: true,
+    external: ['react', 'react-dom'],
 })

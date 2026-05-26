@@ -1,10 +1,10 @@
 import React from 'react'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import type { FieldValues, Path } from 'react-hook-form'
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema'
-import { unsuccessfulResponse } from '@/lib/responses'
+import { unsuccessfulResponse } from '../../lib/responses'
 import {
     generateDefaultValues,
     type FormBaseHandleSubmit,

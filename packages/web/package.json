@@ -1,9 +1,8 @@
 {
     "name": "@wlodev/web",
-    "version": "0.0.0",
+    "version": "0.0.6",
     "description": "Web app utils, hooks and components to simplify development with TanStack Router",
     "license": "MIT",
-    "type": "module",
     "homepage": "https://wlodev.com",
     "repository": {
         "type": "git",
@@ -20,20 +19,25 @@
         "pnpm": ">=11.0.0"
     },
     "files": [
-        "dist"
+        "dist",
+        "src"
     ],
     "exports": {
         ".": {
-            "import": "./dist/index.js",
             "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
             "default": "./dist/index.js"
-        }
+        },
+        "./package.json": "./package.json"
     },
+    "type": "module",
     "main": "./dist/index.js",
+    "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
         "build": "tsup",
-        "dev": "tsup --watch"
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit"
     },
     "peerDependencies": {
         "react": "^19.2.6",
@@ -53,8 +57,5 @@
         "sonner": "^2.0.7",
         "tsup": "^8.5.1",
         "zod": "^4.4.3"
-    },
-    "publishConfig": {
-        "registry": "https://registry.npmjs.org/"
     }
 }

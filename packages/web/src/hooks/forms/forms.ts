@@ -6,7 +6,7 @@ import type {
     UseFormProps,
     UseFormReturn,
 } from 'react-hook-form'
-import type { ResponseType, UnsuccessfulResponse } from '@/lib/responses'
+import type { ResponseType, UnsuccessfulResponse } from '../../lib/responses'
 import type { NavigateOptions } from '@tanstack/react-router'
 
 type Redirect = NavigateOptions
