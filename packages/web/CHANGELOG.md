@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.4.0
+
+### Minor Changes
+
+- [`7f1bd37`](https://github.com/wlodev-labs/web/commit/7f1bd37829672aba591a75c8c342360d7cb6b5b9) - customFetch function to create orval custom fetch with refresh logic and throwing errors
+
 ## 0.3.1
 
 ### Patch Changes
