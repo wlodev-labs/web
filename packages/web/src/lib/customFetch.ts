@@ -8,7 +8,7 @@ export type CustomFetchClientOptions = {
     onRefreshToken: () => Promise<void>
 }
 
-export const createFetchClient = ({
+export const createCustomFetch = ({
     onRefreshToken,
 }: CustomFetchClientOptions) => {
     let isRefreshing = false
