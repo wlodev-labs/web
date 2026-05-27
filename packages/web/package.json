@@ -1,6 +1,6 @@
 {
     "name": "@wlodev/web",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "description": "Web app utils, hooks and components to simplify development with TanStack Router",
     "license": "MIT",
     "homepage": "https://wlodev.com",

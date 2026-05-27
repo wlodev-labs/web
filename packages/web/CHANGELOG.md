@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.5.0
+
+### Minor Changes
+
+- [`e62045b`](https://github.com/wlodev-labs/web/commit/e62045b884c7192c694c9759f13b388bae94e268) - renamed `createFetchClient` to `createCustomFetch`
+
 ## 0.4.0
 
 ### Minor Changes
