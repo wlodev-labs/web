@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.6.0
+
+### Minor Changes
+
+- [`2d35298`](https://github.com/wlodev-labs/web/commit/2d35298f115d13b110f8cc2e0e1940eab7a49888) - Pagination utils added
+
 ## 0.5.0
 
 ### Minor Changes
