@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.6.2
+
+### Patch Changes
+
+- [`598b16d`](https://github.com/wlodev-labs/web/commit/598b16d9b28b8c3fdd106afb396360b805bba207) - zFormOptional with union and generate default values for it
+
 ## 0.6.1
 
 ### Patch Changes
