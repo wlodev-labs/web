@@ -23,7 +23,9 @@ export type VersionProviderProps<TData> = {
     children: React.ReactNode
     activeBuildId: string
     useVersionQuery: (options: VersionQueryOptions) => {
-        data: TData | undefined
+        data?: {
+            data: TData
+        }
     }
     extractData: (data: TData) => VersionQueryData
 }
@@ -48,7 +50,7 @@ export const VersionProvider = <TData,>({
             return
         }
 
-        const { buildId } = extractData(rawData)
+        const { buildId } = extractData(rawData.data)
         setBuildId(buildId)
         // Check for the active build ID and set proper version status
         if (buildId !== activeBuildId) {
