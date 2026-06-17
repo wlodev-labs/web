@@ -77,3 +77,6 @@ export const generateDefaultValues = <TIn extends FieldValues>(
         {} as Record<string, any>,
     ) as DefaultValues<TIn>
 }
+
+export const zFormOptional = <T extends z.ZodTypeAny>(schema: T) =>
+    z.preprocess(val => (val === '' ? undefined : val), schema.optional())
