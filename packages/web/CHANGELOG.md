@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.6.3
+
+### Patch Changes
+
+- [`a425905`](https://github.com/wlodev-labs/web/commit/a4259053d0b98cee23757ccf9246261a92d8d717) - generateDefaultValues with ZodOptional
+
 ## 0.6.2
 
 ### Patch Changes
