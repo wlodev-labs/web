@@ -57,36 +57,24 @@ export const generateDefaultValues = <TIn extends FieldValues>(
     const safeDefaults = (providedDefaults || {}) as Record<string, any>
     return Object.entries(schema.shape).reduce(
         (acc, [key, val]) => {
-            let coreVal = val as any
-            while (
-                coreVal instanceof z.ZodOptional ||
-                coreVal instanceof z.ZodNullable
-            ) {
-                coreVal = coreVal.unwrap()
-            }
-
-            if (coreVal instanceof z.ZodUnion) {
-                // Extract the underlying schema type, ignoring the z.literal("") fallback
-                coreVal =
-                    coreVal.options.find(
-                        (opt: any) =>
-                            !(opt instanceof z.ZodLiteral && opt.value === ''),
-                    ) || coreVal
-            }
-
             if (key in safeDefaults) {
                 acc[key] = safeDefaults[key]
-            } else if (coreVal instanceof z.ZodObject) {
+            } else if (val instanceof z.ZodObject) {
                 acc[key] = generateDefaultValues(val, safeDefaults[key])
-            } else if (coreVal instanceof z.ZodArray) {
+            } else if (val instanceof z.ZodArray) {
                 acc[key] = []
-            } else if (coreVal instanceof z.ZodString) {
+            } else if (val instanceof z.ZodString) {
                 acc[key] = ''
-            } else if (coreVal instanceof z.ZodNumber) {
+            } else if (val instanceof z.ZodNumber) {
                 acc[key] = 0
-            } else if (coreVal instanceof z.ZodBoolean) {
+            } else if (val instanceof z.ZodBoolean) {
                 acc[key] = false
-            } else if (coreVal instanceof z.ZodEmail) {
+            } else if (val instanceof z.ZodEmail) {
+                acc[key] = ''
+            } else if (val instanceof z.ZodOptional) {
+                // zFormOptional appends .optional(), wrapping the schema in ZodOptional.
+                // Initializing with '' prevents react-hook-form uncontrolled input warnings
+                // and satisfies the underlying z.literal('') union.
                 acc[key] = ''
             }
             return acc
