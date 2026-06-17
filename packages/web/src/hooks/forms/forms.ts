@@ -57,19 +57,36 @@ export const generateDefaultValues = <TIn extends FieldValues>(
     const safeDefaults = (providedDefaults || {}) as Record<string, any>
     return Object.entries(schema.shape).reduce(
         (acc, [key, val]) => {
+            let coreVal = val as any
+            while (
+                coreVal instanceof z.ZodOptional ||
+                coreVal instanceof z.ZodNullable
+            ) {
+                coreVal = coreVal.unwrap()
+            }
+
+            if (coreVal instanceof z.ZodUnion) {
+                // Extract the underlying schema type, ignoring the z.literal("") fallback
+                coreVal =
+                    coreVal.options.find(
+                        (opt: any) =>
+                            !(opt instanceof z.ZodLiteral && opt.value === ''),
+                    ) || coreVal
+            }
+
             if (key in safeDefaults) {
                 acc[key] = safeDefaults[key]
-            } else if (val instanceof z.ZodObject) {
+            } else if (coreVal instanceof z.ZodObject) {
                 acc[key] = generateDefaultValues(val, safeDefaults[key])
-            } else if (val instanceof z.ZodArray) {
+            } else if (coreVal instanceof z.ZodArray) {
                 acc[key] = []
-            } else if (val instanceof z.ZodString) {
+            } else if (coreVal instanceof z.ZodString) {
                 acc[key] = ''
-            } else if (val instanceof z.ZodNumber) {
+            } else if (coreVal instanceof z.ZodNumber) {
                 acc[key] = 0
-            } else if (val instanceof z.ZodBoolean) {
+            } else if (coreVal instanceof z.ZodBoolean) {
                 acc[key] = false
-            } else if (val instanceof z.ZodEmail) {
+            } else if (coreVal instanceof z.ZodEmail) {
                 acc[key] = ''
             }
             return acc
@@ -79,4 +96,7 @@ export const generateDefaultValues = <TIn extends FieldValues>(
 }
 
 export const zFormOptional = <T extends z.ZodTypeAny>(schema: T) =>
-    z.preprocess(val => (val === '' ? undefined : val), schema.optional())
+    z
+        .union([schema, z.literal('')])
+        .transform(val => (val === '' ? undefined : val))
+        .optional()
