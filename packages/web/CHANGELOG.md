@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.6.4
+
+### Patch Changes
+
+- [`cfbd1f0`](https://github.com/wlodev-labs/web/commit/cfbd1f0d3421f20c3b4681eada1c14980d8ff547) - VersionContext fix useVersionQuery double data key
+
 ## 0.6.3
 
 ### Patch Changes
