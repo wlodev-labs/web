@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.6.1
+
+### Patch Changes
+
+- [`5dfe566`](https://github.com/wlodev-labs/web/commit/5dfe566737183e3f7345a0e08d3d0e728a6c94b5) - zFormOptional method
+
 ## 0.6.0
 
 ### Minor Changes
