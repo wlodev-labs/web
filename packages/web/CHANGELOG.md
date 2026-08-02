@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.8.1
+
+### Patch Changes
+
+- [`49e5148`](https://github.com/wlodev-labs/web/commit/49e5148dd66bc1e69d0df64862600b1ea2f45e4d) - combineDateAndTime function and new formatTimestamp formats
+
 ## 0.8.0
 
 ### Minor Changes
