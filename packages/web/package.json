@@ -48,7 +48,8 @@
         "zod": "^4.4.3"
     },
     "dependencies": {
-        "@hookform/resolvers": "^5.2.2"
+        "@hookform/resolvers": "^5.2.2",
+        "date-fns": "^4.4.0"
     },
     "devDependencies": {
         "@tanstack/react-query": "^5.100.11",
