@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.0
+
+### Minor Changes
+
+- [`a827754`](https://github.com/wlodev-labs/web/commit/a827754253b038a6d0c722d972882dea1020177b) - AppConfig with react hooks implementation
+
 ## 0.8.1
 
 ### Patch Changes
