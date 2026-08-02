@@ -9,6 +9,7 @@ import {
     type Duration,
     type Locale,
 } from 'date-fns'
+import { getPackageConfig } from './config'
 
 export type FormatTimestampBaseProps = {
     locale?: Locale
@@ -34,7 +35,10 @@ export const formatTimestamp = (
     format: TimestampFormat,
     props?: FormatTimestampProps,
 ): string => {
-    return dateFNSFormat(timestamp, format, { locale: props?.locale })
+    const { dateFNSLocale } = getPackageConfig()
+    return dateFNSFormat(timestamp, format, {
+        locale: props?.locale ?? dateFNSLocale,
+    })
 }
 
 export type FormatAgoProps = FormatTimestampBaseProps & {
@@ -45,8 +49,9 @@ export const formatAgo = (
     timestamp: string | Date,
     props?: FormatAgoProps,
 ): string => {
+    const { dateFNSLocale } = getPackageConfig()
     return formatDistanceToNow(timestamp, {
-        locale: props?.locale,
+        locale: props?.locale ?? dateFNSLocale,
         addSuffix: props?.useSuffix ?? true,
     })
 }
@@ -66,7 +71,8 @@ export const formatDuration = (
     msec: number,
     props?: FormatDurationProps,
 ): string => {
-    const code = props?.locale?.code ?? 'en-US'
+    const locale = props?.locale ?? getPackageConfig().dateFNSLocale
+    const code = locale.code ?? 'en-US'
     const d = intervalToDuration({ start: 0, end: msec })
 
     const fmt = (value: number, unit: DurationUnit) =>

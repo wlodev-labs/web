@@ -1,4 +1,28 @@
 import React from 'react'
+import type { Locale } from 'date-fns'
+import { enUS } from 'date-fns/locale'
+
+export type PackageConfig = {
+    dateFNSLocale: Locale
+}
+
+const defaultPackageConfig: PackageConfig = {
+    dateFNSLocale: enUS,
+}
+
+let packageConfig: PackageConfig = { ...defaultPackageConfig }
+
+export const changePackageConfig = (config: Partial<PackageConfig>) => {
+    packageConfig = { ...packageConfig, ...config }
+}
+
+export const resetPackageConfig = () => {
+    packageConfig = { ...defaultPackageConfig }
+}
+
+export const getPackageConfig = (): Readonly<PackageConfig> => {
+    return packageConfig
+}
 
 export type AppConfigSchemaShape = Record<string, unknown>
 
