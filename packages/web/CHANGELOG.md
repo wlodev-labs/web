@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.1
+
+### Patch Changes
+
+- [`afb9774`](https://github.com/wlodev-labs/web/commit/afb97743cf01b7aa7b535b6a4c3d892561cba4c2) - export InvalidTimeError
+
 ## 0.9.0
 
 ### Minor Changes
