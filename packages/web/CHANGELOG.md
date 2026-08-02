@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.2
+
+### Patch Changes
+
+- [`439f5da`](https://github.com/wlodev-labs/web/commit/439f5da4b1e3ac6632e562e4b98f08f3eecd53d0) - packageConfig introduced for e.g. date-fns locale
+
 ## 0.9.1
 
 ### Patch Changes
