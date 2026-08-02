@@ -2,6 +2,10 @@ import {
     format as dateFNSFormat,
     formatDistanceToNow,
     intervalToDuration,
+    isMatch,
+    isValid,
+    parse,
+    set,
     type Duration,
     type Locale,
 } from 'date-fns'
@@ -16,6 +20,9 @@ export type TimestampFormat =
     | 'dd MMMM yyyy HH:mm:ss'
     | 'dd.MM.yyyy HH:mm'
     | 'dd.MM.yyyy HH:mm:ss'
+    | 'dd-MM-yyyy'
+    | 'yyyy-MM-dd'
+    | 'dd MMMM yyyy'
     | 'HH:mm'
     | 'HH:mm:ss'
     | 'HH:mm:ss.SSS'
@@ -40,7 +47,7 @@ export const formatAgo = (
 ): string => {
     return formatDistanceToNow(timestamp, {
         locale: props?.locale,
-        addSuffix: props?.useSuffix,
+        addSuffix: props?.useSuffix ?? true,
     })
 }
 
@@ -73,4 +80,37 @@ export const formatDuration = (
         fmt(d[key] as number, unit),
     )
     return parts.length ? parts.join(' ') : fmt(0, 'second')
+}
+
+class InvalidTimeError extends Error {
+    constructor(time: string) {
+        super(`Invalid time format: ${time}`)
+        this.name = 'InvalidTimeError'
+    }
+}
+
+/**
+ * Combines a date and a time string into a single Date object.
+ * @param date - The date as a string or Date object.
+ * @param time - The time as a string in 'HH:mm' or 'HH:mm:ss' format.
+ * @returns A new Date object representing the combined date and time.
+ * @throws {InvalidTimeError} If the time string is not in a valid format.
+ */
+export const combineDateAndTime = (date: string | Date, time: string): Date => {
+    const format = time.length === 5 ? 'HH:mm' : 'HH:mm:ss'
+    if (!isMatch(time, format)) {
+        throw new InvalidTimeError(time)
+    }
+
+    const parsed = parse(time, format, new Date())
+    if (!isValid(parsed)) {
+        throw new InvalidTimeError(time)
+    }
+
+    return set(date, {
+        hours: parsed.getHours(),
+        minutes: parsed.getMinutes(),
+        seconds: parsed.getSeconds(),
+        milliseconds: 0,
+    })
 }
