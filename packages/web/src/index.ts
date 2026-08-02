@@ -1,6 +1,7 @@
 export * from './hooks/forms/forms'
 export * from './hooks/forms/useFormInline'
 export * from './hooks/forms/useFormModal'
+export * from './hooks/useMediaQuery'
 export * from './lib/responses'
 export * from './lib/errors'
 export * from './lib/queries'
