@@ -20,8 +20,7 @@ export type AppConfigOptions<TSchema extends AppConfigSchemaShape> = {
      */
     prefix?: string
     /**
-     * Storage implementation. Defaults to window.localStorage. Pass
-     * sessionStorage, or a memory shim for SSR/tests.
+     * Storage implementation. Defaults to window.localStorage.
      */
     storage?: StorageLike
     /**

@@ -82,7 +82,7 @@ export const formatDuration = (
     return parts.length ? parts.join(' ') : fmt(0, 'second')
 }
 
-class InvalidTimeError extends Error {
+export class InvalidTimeError extends Error {
     constructor(time: string) {
         super(`Invalid time format: ${time}`)
         this.name = 'InvalidTimeError'
