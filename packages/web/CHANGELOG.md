@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.8.0
+
+### Minor Changes
+
+- [`3fd2269`](https://github.com/wlodev-labs/web/commit/3fd2269218204003c37312af409c6841e16bbf9d) - useMediaQuery hook
+
 ## 0.7.0
 
 ### Minor Changes
