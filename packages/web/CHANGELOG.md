@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.3
+
+### Patch Changes
+
+- [`900e347`](https://github.com/wlodev-labs/web/commit/900e347ac0f396d69eeab738e1ba62363da90300) - Fix customFetch retry mechanism with shared promise
+
 ## 0.9.2
 
 ### Patch Changes
