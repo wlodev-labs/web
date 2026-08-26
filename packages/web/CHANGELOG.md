@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.4
+
+### Patch Changes
+
+- [`a606777`](https://github.com/wlodev-labs/web/commit/a606777ba8a034376dd68da2d05435ab878ab01d) - useComboboxItems
+
 ## 0.9.3
 
 ### Patch Changes
