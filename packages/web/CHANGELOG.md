@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.6
+
+### Patch Changes
+
+- [`6a2b7a8`](https://github.com/wlodev-labs/web/commit/6a2b7a875f3c8fa2760b094eddfe1390ff6866b9) - getFieldId
+
 ## 0.9.5
 
 ### Patch Changes
