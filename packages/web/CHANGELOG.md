@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.5
+
+### Patch Changes
+
+- [`ab9cb2b`](https://github.com/wlodev-labs/web/commit/ab9cb2b2be800c8ca55e9fb0719a131d204df90b) - BaseReusableFormFieldProps
+
 ## 0.9.4
 
 ### Patch Changes
