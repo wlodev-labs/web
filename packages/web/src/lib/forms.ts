@@ -8,3 +8,6 @@ export type BaseReusableFormFieldProps<TValue> = {
     }
     fieldState: ControllerFieldState
 }
+
+export const getFieldId = (formId: string, fieldName: string) =>
+    `${formId}-${fieldName}`
