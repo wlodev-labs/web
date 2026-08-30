@@ -1,0 +1,5 @@
+---
+'@wlodev/web': patch
+---
+
+BaseReusableFormFieldProps
