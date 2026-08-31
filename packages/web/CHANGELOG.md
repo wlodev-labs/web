@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.8
+
+### Patch Changes
+
+- [`66c37c9`](https://github.com/wlodev-labs/web/commit/66c37c949551679940df734a7b9d82ae822c7a45) - cache parsed snapshot of app config
+
 ## 0.9.7
 
 ### Patch Changes
