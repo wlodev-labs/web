@@ -106,6 +106,11 @@ export const createAppConfig = <TSchema extends AppConfigSchemaShape>({
 }: AppConfigOptions<TSchema>): AppConfig<TSchema> => {
     const storage = resolveStorage(providedStorage)
 
+    // Caches the parsed value per storage key, keyed by the raw serialized
+    // string. Required so `get` returns a referentially stable object/array for
+    // `useSyncExternalStore`
+    const snapshotCache = new Map<string, { raw: string; value: unknown }>()
+
     const notify = (fullKey: string, newValue: string | null) => {
         if (typeof window === 'undefined') {
             return
@@ -125,13 +130,25 @@ export const createAppConfig = <TSchema extends AppConfigSchemaShape>({
         get(key, fallback) {
             const resolvedFallback = (fallback ??
                 defaults[key]) as TSchema[typeof key]
+            const fullKey = withPrefix(key, prefix)
             try {
-                const raw = storage.getItem(withPrefix(key, prefix))
-                return raw !== null
-                    ? (JSON.parse(raw) as TSchema[typeof key])
-                    : resolvedFallback
+                const raw = storage.getItem(fullKey)
+                if (raw === null) {
+                    snapshotCache.delete(fullKey)
+                    return resolvedFallback
+                }
+
+                const cached = snapshotCache.get(fullKey)
+                if (cached && cached.raw === raw) {
+                    return cached.value as TSchema[typeof key]
+                }
+
+                const value = JSON.parse(raw) as TSchema[typeof key]
+                snapshotCache.set(fullKey, { raw, value })
+                return value
             } catch (error) {
                 onError?.(error, { key, op: 'get' })
+                snapshotCache.delete(fullKey)
                 return resolvedFallback
             }
         },
@@ -140,6 +157,9 @@ export const createAppConfig = <TSchema extends AppConfigSchemaShape>({
             try {
                 const stringified = JSON.stringify(value)
                 storage.setItem(fullKey, stringified)
+                // Keep the caller's reference as the snapshot so the next
+                // render doesn't re-parse and produce a new identity.
+                snapshotCache.set(fullKey, { raw: stringified, value })
                 notify(fullKey, stringified)
             } catch (error) {
                 onError?.(error, { key, op: 'set' })
@@ -149,6 +169,7 @@ export const createAppConfig = <TSchema extends AppConfigSchemaShape>({
             const fullKey = withPrefix(key, prefix)
             try {
                 storage.removeItem(fullKey)
+                snapshotCache.delete(fullKey)
                 notify(fullKey, null)
             } catch (error) {
                 onError?.(error, { key, op: 'remove' })
