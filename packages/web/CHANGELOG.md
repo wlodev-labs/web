@@ -1,5 +1,11 @@
 # @wlodev/web
 
+## 0.9.7
+
+### Patch Changes
+
+- [`3fde017`](https://github.com/wlodev-labs/web/commit/3fde01735b76d2b012a7bd7232d03c86f89ef808) - form handle zod defaultValues generation with unwrapping wrapper types
+
 ## 0.9.6
 
 ### Patch Changes
