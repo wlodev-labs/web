@@ -59,28 +59,56 @@ export const generateDefaultValues = <TIn extends FieldValues>(
         (acc, [key, val]) => {
             if (key in safeDefaults) {
                 acc[key] = safeDefaults[key]
-            } else if (val instanceof z.ZodObject) {
-                acc[key] = generateDefaultValues(val, safeDefaults[key])
-            } else if (val instanceof z.ZodArray) {
-                acc[key] = []
-            } else if (val instanceof z.ZodString) {
-                acc[key] = ''
-            } else if (val instanceof z.ZodNumber) {
-                acc[key] = 0
-            } else if (val instanceof z.ZodBoolean) {
-                acc[key] = false
-            } else if (val instanceof z.ZodEmail) {
-                acc[key] = ''
-            } else if (val instanceof z.ZodOptional) {
-                // zFormOptional appends .optional(), wrapping the schema in ZodOptional.
-                // Initializing with '' prevents react-hook-form uncontrolled input warnings
-                // and satisfies the underlying z.literal('') union.
-                acc[key] = ''
+                return acc
+            }
+            const value = resolveDefault(val, safeDefaults[key])
+            if (value !== NO_DEFAULT) {
+                acc[key] = value
             }
             return acc
         },
         {} as Record<string, any>,
     ) as DefaultValues<TIn>
+}
+
+const NO_DEFAULT = Symbol('no-default')
+
+const resolveDefault = (schema: unknown, provided?: any): any => {
+    if (schema instanceof z.ZodDefault) {
+        return schema.def.defaultValue
+    }
+
+    if (schema instanceof z.ZodPipe) {
+        // `.transform()` / `.pipe()` produce ZodPipe
+        return resolveDefault(schema.def.in, provided)
+    }
+
+    if (schema instanceof z.ZodOptional || schema instanceof z.ZodNullable) {
+        // zFormOptional appends .optional(); '' satisfies the z.literal('')
+        // union and prevents react-hook-form uncontrolled input warnings
+        const inner = resolveDefault(schema.unwrap(), provided)
+        return inner === NO_DEFAULT ? '' : inner
+    }
+
+    if (schema instanceof z.ZodCatch || schema instanceof z.ZodReadonly) {
+        return resolveDefault(schema.def.innerType, provided)
+    }
+
+    if (schema instanceof z.ZodObject) {
+        return generateDefaultValues(schema, provided)
+    } else if (schema instanceof z.ZodArray) {
+        return []
+    } else if (schema instanceof z.ZodString || schema instanceof z.ZodEmail) {
+        return ''
+    } else if (schema instanceof z.ZodNumber) {
+        return 0
+    } else if (schema instanceof z.ZodBoolean) {
+        return false
+    } else if (schema instanceof z.ZodLiteral) {
+        return schema.def.values[0]
+    }
+
+    return NO_DEFAULT
 }
 
 export const zFormOptional = <T extends z.ZodTypeAny>(schema: T) =>
